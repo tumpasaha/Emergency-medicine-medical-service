@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+        <!--google fonts linking here-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <!--bootstrap 4 linking here-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'user/style.css' %}">
+        <style>
+            /* CUSTOM RESETS
+            ================================================== */
+            a {
+                transition: color 0.25s ease-in-out;
+                -moz-transition: color 0.25s ease-in-out;
+                -webkit-transition: color 0.25s ease-in-out;
+                -o-transition: color 0.25s ease-in-out;
+                -ms-transition: color 0.25s ease-in-out;
+            }
+            a:focus,
+            a:hover {
+                outline: 0 none;
+                text-decoration: none;
+            }
+
+            h4 {
+                font-size: 20px;
+            }
+            hr{
+                border: 2px solid #b4b4b4;
+                width: 30%;
+                margin-top: 2.2rem;
+                margin-bottom: 2.8rem;
+            }
+
+            /* Buttons */
+            .btn {
+                min-width: 145px;
+                line-height: 50px;
+                padding: 0 30px;
+                font-size: 16px;
+                font-weight: 600;
+                text-transform: uppercase;
+                border-radius: 10px;
+                transition: box-shadow 0.25s;
+                -moz-transition: box-shadow 0.25s ease-in-out;
+                -webkit-transition: box-shadow 0.25s ease-in-out;
+                -o-transition: box-shadow 0.25s ease-in-out;
+                -ms-transition: box-shadow 0.25s ease-in-out;
+            }
+
+            .btn-fill {
+                color: #fff;
+                background-color: #ff214f;
+                transition: 0.7s;
+                margin-right: 5px;
+            }
+
+            .btn-border {
+                background-color: transparent;
+                color: #212121;
+                border: 2px solid #30336b;
+                transition: 0.6s;
+            }
+
+            .btn:hover,
+            .btn:focus {
+                color: #ffbe76;
+                background-color: #30336b;
+                box-shadow: 0px 10px 18px 0px rgba(0, 0, 0, 0.15);
+            }
+
+
+            /* Input fields */
+            .form-control {
+                padding-left: 10px;
+                border: 0;
+                border: 1.6px solid #212121;
+                border-radius: 8px;
+                background-color: transparent;
+                box-shadow: none;
+                outline: 0 none transparent;
+                -webkit-appearance:none;
+             }
+
+            textarea {
+                margin-top: 40px;
+                min-height: 150px;
+                resize: none;
+            }
+
+            .form-control:focus {
+                box-shadow: none;
+                border-bottom-color: #e1e1e1;
+            }
+
+            ::-moz-placeholder,
+            ::-webkit-input-placeholder {
+                font-size: 16px;
+            }
+
+            html, body{
+                margin: 0;
+                padding: 0;
+                font-family: 'Roboto', sans-serif;
+                color: #222;
+                background: #f0f0f0;
+            }
+            .color{color: red;}
+
+            .navbar {
+                padding: .5rem;
+            }
+            .navbar-brand{
+                font-weight: bold;
+                font-size: 1.8em
+            }
+            .navbar ul li a:hover{
+                color: dodgerblue !important;
+            }
+            .dropdown-menu{
+                background: #f2f2f2;
+                border: 1px solid rgba(0,0,0,.35);
+                border-radius: 1rem;
+            }
+            .dropdown-menu.service {
+                left: -10%;
+                max-width: 0;
+            }
+            .dropdown-menu a:hover{
+                border-radius:20px;
+                background-color: blanchedalmond;
+            }
+            .profile .dropdown-menu {
+                top: 100%;
+                left: -8%;
+                font-size: 0.9rem;
+                min-width: 8rem;
+                color: #21252A;
+                text-align: rigth;
+            }
+            .profile .dropdown-menu .dropdown-item{padding-top:7px;}
+            .navbar-nav li{
+                padding-left: 1.1rem;
+            }
+            .nav-link{
+                font-size: 1.1em !important;
+                font-weight: 500;
+            }
+
+
+            .copyrights {
+                border-top: 1px dashed rgba(255, 255, 255, 0.1);
+                background-color: #1f1f1f;
+                box-sizing: border-box;
+                width: 100%;
+                text-align: center;
+                padding: 30px 0px;
+                overflow: hidden;
+            }
+
+            .footer-distributed .footer-links {
+                margin: 0 0 10px;
+                text-transform: uppercase;
+                padding: 0;
+            }
+
+            .footer-distributed .footer-links a {
+                display: inline-block;
+                line-height: 1.8;
+                margin: 0 10px 0 10px;
+                text-decoration: none;
+            }
+            .footer-distributed .footer-company-name {
+                font-weight: 300;
+                margin: 0 10px;
+                color: #666;
+                padding: 0;
+            }
+            .footer-distributed a{
+                margin-bottom: 20px;
+                display: inline-block;
+                font-size: 17px;
+            }
+
+
+            .loggedout {
+                margin: 45px 0 100px 70px;
+                width: 70%;
+                background: rgba(0, 0, 0, 0.45);
+                padding: 20px;
+                color: #f2f2f2;
+            }
+            .loggedout p {
+                font-size: 18px;
+                margin: 10px 0;
+            }
+            .loggedout a{color: orange !important;}
+
+            section#contact {margin-top: 50px;}
+            .section-form h3,.section-form .btn {margin: 40px 0;}
+
+            div#profileinfo {
+                margin: 30px 0 50px 0;
+            }
+            #profileinfo .header{
+                color: #30c9e8;
+                text-align: center;
+                margin-bottom: -20px;
+                font-weight: 600;
+                font-size: 28px;
+            }
+
+            .error{
+                display: inline-block;
+                float: left;
+                margin-top: 8px;
+                color: red;
+                padding:3px;
+
+            }
+
+            .doctors img{height:280px}
+            .medicines .card-title{background-color:#f0f0f0;padding:5px;text-align:center;}
+        </style>
+    </head>
+    <body>
+        <!--header part coding starting here-->
+        <!--navbar code starting here-->
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}">emds</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto text-white">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'doctorservices' %}">Doctor Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'medicineservices' %}">Medicine Service</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' %}">View Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                        </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Log in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">register</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--navbar coding end here-->
+        <!--header part codeing end here-->
+        {% block content %}
+
+        {% endblock %}
+
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!--font-awesome linking here-->
+        <script src="http://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    </body>
+</html>

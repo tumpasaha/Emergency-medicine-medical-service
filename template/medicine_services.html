@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    medicine services
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+    <div class="container medicine">
+        <div class="row">
+            {% for medicine in medicines %}
+                <div class="col-md-4">
+                    <div class="card p-3 m-2">
+                        <img class="card-img-top" src= " {{ medicine.medicine_pic.url }}" alt="Card image cap" style="height:150px">
+                        <div class="card-body">
+                            <h5 class="card-cat">{{medicine.category.name}} </h5>
+                            <h5 class="card-title">{{medicine.medicine_name}} </h5>
+                            <h5 class="card-title">{{medicine.company_name}} </h5>
+                            <h5 class="card-title">strength:{{medicine.strength}} </h5>
+                            <p id='price' class="card-title">{{medicine.price_BDT}} <span>taka per piece</span></p>
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <input hidden type="text" name="addCart"  value="{{ doctor.doctor_id }}">
+                                <input hidden type="text" name="remove"  value="True">
+                                <div class="checkoutbotton">
+                                    <a  href="#" class="btn btn-success text-light">Order now</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+<style>
+.medicine{margin-top:70px;}
+.card-title{
+    font-size: 16px;
+    color: #f0f0f0;
+}
+.card{
+    width: 21rem;
+    margin: 0 23px 30px 0;
+    border-radius:30px;
+    background: black;
+}
+.card-img-top{
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.27);
+    border-radius:20px;
+    border: 1px solid blue;
+}
+.card-body{padding: 1.35rem .60rem .45rem .45rem;}
+.card-body .btn{padding: 0 72px;border:none;border-radius:50px;transition:0.5s;}
+
+
+</style>
+{% endblock %}
